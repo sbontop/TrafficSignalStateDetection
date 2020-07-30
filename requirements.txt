@@ -2,4 +2,6 @@ numpy
 opencv-python
 matplotlib
 keras
-tensorflow
+--upgrade tensorflow
+sklearn
+pandas
