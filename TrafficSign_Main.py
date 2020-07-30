@@ -14,14 +14,13 @@ import pandas as pd
 import random
 from keras.preprocessing.image import ImageDataGenerator
  
- 
 ################# Parameters #####################
  
 path = "myData" # folder with all the class folders
 labelFile = 'labels.csv' # file with all names of classes
 batch_size_val=50  # how many to process together
 steps_per_epoch_val=446
-epochs_val=1
+epochs_val=30
 imageDimesions = (32,32,3)
 testRatio = 0.2    # if 1000 images split will 200 for testing
 validationRatio = 0.2 # if 1000 images 20% of remaining 800 will be 160 for validation
@@ -40,7 +39,7 @@ for x in range (0,len(myList)):
     myPicList = os.listdir(path+"/"+str(count))
     for y in myPicList:
         curImg = cv2.imread(path+"/"+str(count)+"/"+y)
-        images.append(curImg)
+       	images.append(curImg)
         classNo.append(count)
     print(count, end =" ")
     count +=1
@@ -196,11 +195,14 @@ plt.show()
 score =model.evaluate(X_test,y_test,verbose=0)
 print('Test Score:',score[0])
 print('Test Accuracy:',score[1])
- 
- 
+
 # STORE THE MODEL AS A PICKLE OBJECT
-pickle_out= open("model_trained.p","wb")  # wb = WRITE BYTE
-pickle.dump(model,pickle_out)
-# pickle.dump(history.history,pickle_out)
-pickle_out.close()
-cv2.waitKey(0)
+#pickle_out= open("model_trained.p","wb")  # wb = WRITE BYTE
+#pickle.dump(model,pickle_out)
+#pickle_out.close()
+
+# save model and architecture to single file
+model.save("model.h5")
+print("Saved model to disk")
+
+#cv2.waitKey(0)
