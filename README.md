@@ -19,7 +19,7 @@ Artifficial Intelligence project aims to classify traffic signs using convolutio
 5. Exit virtual environment:
   - `deactivate  # don't exit until you're done using TensorFlow or the other libraries`
 6. Install all packages required via `pip`:
-  - `pip3 install -r requeriments.txt`
+  - `pip3 install -r requirements.txt`
 7. Training Phase:
   - `python3 TrafficSign_Main.py`
 > In case compiled successfully 
