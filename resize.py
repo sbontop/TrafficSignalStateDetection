@@ -9,7 +9,7 @@ Note: Every time new pictures are added to the training set should be resized in
 and add them to the ./myData/43, ./myData/44 and ./myData/45 directory respectively
 """
 def resize_training_set():
-	no_folder = 43
+	no_folder = 0
 	no_files_read = 0
 	for i in range(3):
 		for (dirpath, dirnames, filenames) in walk("./colores-semaforos/" + str(no_folder) + "/"):
@@ -23,3 +23,4 @@ def resize_training_set():
 		no_folder += 1
 	print("Total Number of Files Read: ", no_files_read)
 
+resize_training_set()

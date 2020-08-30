@@ -14,16 +14,17 @@ import pandas as pd
 import random
 from keras.preprocessing.image import ImageDataGenerator
  
-################# Parameters #####################
- 
-path = "myData" # folder with all the class folders
-labelFile = 'labels.csv' # file with all names of classes
-batch_size_val=50  # how many to process together
-steps_per_epoch_val=446
-epochs_val=30
-imageDimesions = (32,32,3)
-testRatio = 0.2    # if 1000 images split will 200 for testing
-validationRatio = 0.2 # if 1000 images 20% of remaining 800 will be 160 for validation
+
+path = "myData" # carpeta con todas las carpetas de las clases
+labelFile = 'labels.csv' # archivo con nombres de las clases
+imageDimesions = (32,32,3) #
+
+################# Hiperparametros ##################### 
+batch_size_val=10  #cantidad de datos a procesar 
+steps_per_epoch_val=100
+epochs_val=75
+testRatio = 0.1    # if 1000 images split will 200 for testing
+validationRatio = 0.1 # if 1000 images 20% of remaining 800 will be 160 for validation
 ###################################################
  
  
@@ -148,7 +149,7 @@ y_test = to_categorical(y_test,noOfClasses)
  
 ############################### CONVOLUTION NEURAL NETWORK MODEL
 def myModel():
-    no_Of_Filters=60
+    no_Of_Filters=300
     size_of_Filter=(5,5) # THIS IS THE KERNEL THAT MOVE AROUND THE IMAGE TO GET THE FEATURES.
                          # THIS WOULD REMOVE 2 PIXELS FROM EACH BORDER WHEN USING 32 32 IMAGE
     size_of_Filter2=(3,3)
