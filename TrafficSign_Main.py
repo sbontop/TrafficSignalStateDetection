@@ -20,9 +20,9 @@ labelFile = 'labels.csv' # archivo con nombres de las clases
 imageDimesions = (32,32,3) #
 
 ################# Hiperparametros ##################### 
-batch_size_val=10  #cantidad de datos a procesar 
+batch_size_val=18  #cantidad de datos a procesar 
 steps_per_epoch_val=100
-epochs_val=75
+epochs_val=175
 testRatio = 0.1    # if 1000 images split will 200 for testing
 validationRatio = 0.1 # if 1000 images 20% of remaining 800 will be 160 for validation
 ###################################################
@@ -149,7 +149,7 @@ y_test = to_categorical(y_test,noOfClasses)
  
 ############################### CONVOLUTION NEURAL NETWORK MODEL
 def myModel():
-    no_Of_Filters=300
+    no_Of_Filters=60
     size_of_Filter=(5,5) # THIS IS THE KERNEL THAT MOVE AROUND THE IMAGE TO GET THE FEATURES.
                          # THIS WOULD REMOVE 2 PIXELS FROM EACH BORDER WHEN USING 32 32 IMAGE
     size_of_Filter2=(3,3)

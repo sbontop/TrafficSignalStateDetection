@@ -49,11 +49,11 @@ while True:
  
     # READ IMAGE
     # success, imgOrignal = cap.read()
-    imgOrignal = cv2.imread('verde10.png', 1)
+    imgOrignal = cv2.imread('rojo6.jpg', 1)
  
     # PROCESS IMAGE
     # img = np.asarray(imgOrignal)
-    img = cv2.imread('verde10.png', 1)
+    img = cv2.imread('rojo6.jpg', 1)
     img = cv2.resize(img, (32, 32))
     img = preprocessing(img)
     cv2.imshow("Processed Image", img)
