@@ -3,31 +3,15 @@ import cv2
 import pickle
 from keras.models import load_model
  
-#############################################
- 
-frameWidth= 640         # CAMERA RESOLUTION
-frameHeight = 480
-brightness = 180
-#threshold = 0.75         # PROBABLITY THRESHOLD
-threshold = -1
-font = cv2.FONT_HERSHEY_SIMPLEX
-##############################################
- 
-# SETUP THE VIDEO CAMERA
-#cap = cv2.VideoCapture(0)
+# Cargar modelo
+# Para salir del testeo presionar Ctrl+C en línea de comandos de linux
 
-#cap.set(3, frameWidth)
-#cap.set(4, frameHeight)
-#cap.set(10, brightness)
+modelo = load_model('model.h5')
 
-# IMPORT THE TRANNIED MODEL
-#pickle_in=open("model_trained.p","rb")  ## rb = READ BYTE
-#model=pickle.load(pickle_in)
+fuente = cv2.FONT_HERSHEY_SIMPLEX
 
-# load model
-model = load_model('model.h5')
-# summarize model.
-print(model.summary())
+# Imprimir detalles del modelo.
+print(modelo.summary())
 
 def grayscale(img):
     img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -41,35 +25,32 @@ def preprocessing(img):
     img = img/255
     return img
 def getClassName(classNo):
-    if classNo == 0: return 'red'
-    elif classNo == 1: return 'yellow'
-    elif classNo == 2: return 'green'
- 
+    if classNo == 0: return 'rojo'
+    elif classNo == 1: return 'amarillo'
+    elif classNo == 2: return 'verde'
+  
+# Leer imagen de prueba
+
 while True:
- 
-    # READ IMAGE
-    # success, imgOrignal = cap.read()
-    imgOrignal = cv2.imread('rojo6.jpg', 1)
- 
-    # PROCESS IMAGE
-    # img = np.asarray(imgOrignal)
-    img = cv2.imread('rojo6.jpg', 1)
+    imgOrignal = cv2.imread('verde1.jpeg', 1)
+    imgOrignal = cv2.resize(imgOrignal, (500,500))
+
+    # Procesar imagen
+    img = cv2.imread('verde1.jpeg', 1)
     img = cv2.resize(img, (32, 32))
     img = preprocessing(img)
-    cv2.imshow("Processed Image", img)
     img = img.reshape(1, 32, 32, 1)
-    cv2.putText(imgOrignal, "CLASS: " , (20, 35), font, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
-    cv2.putText(imgOrignal, "PROBABILITY: ", (20, 75), font, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
-    # PREDICT IMAGE
-    predictions = model.predict(img)
-    classIndex = model.predict_classes(img)
-    probabilityValue =np.amax(predictions)
-    print("predictions", predictions, "classIndex: ", classIndex, "probabilityValue", probabilityValue)
-    if probabilityValue > threshold:
-        #print(getCalssName(classIndex))
-        cv2.putText(imgOrignal,str(classIndex)+" "+str(getClassName(classIndex)), (120, 35), font, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
-        cv2.putText(imgOrignal, str(round(probabilityValue*100,2) )+"%", (180, 75), font, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
-    cv2.imshow("Result", imgOrignal)
- 
+    cv2.putText(imgOrignal, "Clase: " , (20, 35), fuente, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
+    cv2.putText(imgOrignal, "Probabilidad: ", (20, 75), fuente, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
+
+    # Predecir imagen
+    predicciones = modelo.predict(img)
+    indiceClase = modelo.predict_classes(img)
+    valorProbabilidad =np.amax(predicciones)
+    print("Predicciones", predicciones, "Indice de clase: ", indiceClase, "Valor de probabilidad", valorProbabilidad)
+    cv2.putText(imgOrignal,str(indiceClase)+" "+str(getClassName(indiceClase)), (120, 35), fuente, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
+    cv2.putText(imgOrignal, str(round(valorProbabilidad*100,2) )+"%", (180, 75), fuente, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
+    cv2.imshow("Resultado", imgOrignal)
+
     if cv2.waitKey(1) and 0xFF == ord('q'):
         break
