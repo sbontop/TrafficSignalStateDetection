@@ -32,14 +32,14 @@ def getClassName(classNo):
 # Leer imagen de prueba
 
 while True:
-    imgOrignal = cv2.imread('verde1.jpeg', 1)
-    imgOrignal = cv2.resize(imgOrignal, (500,500))
+    imgOrignal = cv2.imread('rojo5.jpeg', 1)
+    imgOrignal = cv2.resize(imgOrignal, (600,338))
 
     # Procesar imagen
-    img = cv2.imread('verde1.jpeg', 1)
-    img = cv2.resize(img, (32, 32))
+    img = cv2.imread('rojo5.jpeg', 1)
+    img = cv2.resize(img, (50, 50))
     img = preprocessing(img)
-    img = img.reshape(1, 32, 32, 1)
+    img = img.reshape(1, 50, 50, 1)
     cv2.putText(imgOrignal, "Clase: " , (20, 35), fuente, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
     cv2.putText(imgOrignal, "Probabilidad: ", (20, 75), fuente, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
 

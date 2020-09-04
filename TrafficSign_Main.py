@@ -17,12 +17,11 @@ from keras.preprocessing.image import ImageDataGenerator
 
 rutaImagenes = "datos" # carpeta con todas las carpetas de las clases
 archivoLabels = 'labels.csv' # archivo con nombres de las clases
-dimensionImagenes = (32,32,3) # dimensiones de las imáges a trabajar
+dimensionImagenes = (50,50,3) # dimensiones de las imáges a trabajar
 
 # Hiperparametros
 tamanoBatch=18   #cantidad de datos a procesar 
-pasosPorEpoca=100
-epocas=175
+epocas=85
 radioTest = 0.1    # if 1000 imagenes split will 200 for testing
 radioValidacion = 0.1 # if 1000 imagenes 20% of remaining 800 will be 160 for validation
  
@@ -142,6 +141,7 @@ def generarModelo():
     tamanoPool=(2,2) 
     numeroNodosMLP = 500  
     modelo = Sequential()
+    
     modelo.add((Conv2D(numeroFIltros//2,tamanoFiltros,input_shape=(dimensionImagenes[0],dimensionImagenes[1],1),activation='relu')))
     modelo.add((Conv2D(numeroFIltros//2, tamanoFiltros, activation='relu')))
     modelo.add(MaxPooling2D(pool_size=tamanoPool))
@@ -149,7 +149,10 @@ def generarModelo():
     modelo.add((Conv2D(numeroFIltros, tamanoFiltrosSegundaCapa,activation='relu')))
     modelo.add((Conv2D(numeroFIltros , tamanoFiltrosSegundaCapa, activation='relu')))
     modelo.add(MaxPooling2D(pool_size=tamanoPool))
-    modelo.add(Dropout(0.5))
+    
+    modelo.add((Conv2D(numeroFIltros, tamanoFiltrosSegundaCapa,activation='relu')))
+    modelo.add((Conv2D(numeroFIltros , tamanoFiltrosSegundaCapa, activation='relu')))
+    modelo.add(MaxPooling2D(pool_size=tamanoPool))
  
     modelo.add(Flatten())
     modelo.add(Dense(numeroNodosMLP,activation='relu'))
@@ -162,7 +165,7 @@ def generarModelo():
 # Entrenar
 modelo = generarModelo()
 print(modelo.summary())
-history=modelo.fit_generator(datosGenerados.flow(XEntrenamiento,YEntrenamiento,batch_size=tamanoBatch),steps_per_epoch=pasosPorEpoca,epochs=epocas,validation_data=(XValidacion,YValidacion),shuffle=1)
+history=modelo.fit_generator(datosGenerados.flow(XEntrenamiento,YEntrenamiento,batch_size=tamanoBatch),epochs=epocas,validation_data=(XValidacion,YValidacion),shuffle=1)
  
 # Gráficos de resultados
 plt.figure(1)

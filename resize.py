@@ -16,8 +16,8 @@ def resize_training_set():
 			for filename in filenames:
 				no_files_read += 1
 				original_img = cv2.imread("./colores-semaforos/" + str(no_folder) + "/" + filename, cv2.IMREAD_UNCHANGED)
-				resized_img = cv2.resize(original_img, (32, 32), interpolation = cv2.INTER_AREA)
-				cv2.imwrite("./myData/" + str(no_folder) + "/" + filename, resized_img)
+				resized_img = cv2.resize(original_img, (50, 50), interpolation = cv2.INTER_AREA)
+				cv2.imwrite("./datos/" + str(no_folder) + "/" + filename, resized_img)
 				#print("Original Dimensions: ", original_img.shape," Resized Dimensions: ", resized_img.shape)
 		print("No. Folder Read: ", no_folder, " No. Files Read: ", len(filenames))
 		no_folder += 1
