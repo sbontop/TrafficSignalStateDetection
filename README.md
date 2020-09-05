@@ -25,8 +25,21 @@ Artifficial Intelligence project aims to classify traffic signs using convolutio
 > In case compiled successfully 
 > `model.h5` file should be generated
 8. Testing Phase:
-> Actually we have been testing with training set pictures to validate CNN learning
-> and also we are in search of more pictures to add to the training set 
-  - `python3 TrafficSignTest.py`
-> Note: This script was used for early testing stage, and now we have developed a web application as a GUI where the user selects the image to test.
-> The web application can be found in the 'Interfaz/SemVisorIA' folder in root directory. This folder contains instructions to run the GUI
+
+8.1 Early Stage Testing Phase:
+- `python3 TrafficSignTest.py`
+> The image selected for this test should be located in root directory and modify the name of the image read in variables `img` and `imgOrignal` in `TrafficSignTest.py` file
+
+> Note: This script was used for early testing stage, and now we have developed a web application as a GUI where the user selects the image to test
+> The web application can be found in the `./Interfaz/SemVisorIA/` directory. This folder contains the instructions to run the GUI
+
+8.2 Web Application Visualization
+> To run the GUI please visit `./Interfaz/SemVisorIA/` directory.
+
+## Add Aditional Training Dataset
+1. Select the Images for the training
+2. Classify the images manually
+3. Define the class name and class number in the `./label.csv` file
+4. Load Images to `./colores-semaforos/${class_number}` directory, considering `${class_number}` is the number of the class in CSV file
+5. Append class name and class number to the `getClassName` function in `./TrafficSignTest.py` file for early stage test phase or in `getClassName` function in `./IA/SemVisorIA/reconocimiento/IA.py` file for GUI test phase
+6. Run `./resize.py` file that takes all the images located in `./colores-semaforos/` directory, and then are resized to 50x50 pixels and copied to `./datos/${class_number}` directory
