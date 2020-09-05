@@ -28,5 +28,5 @@ Artifficial Intelligence project aims to classify traffic signs using convolutio
 > Actually we have been testing with training set pictures to validate CNN learning
 > and also we are in search of more pictures to add to the training set 
   - `python3 TrafficSignTest.py`
-  - `Note: This script was used for early testing stage, and now we have developed a web application as a GUI where the user selects the image to test`
-  - `The web application can be found in the 'Interfaz/SemVisorIA' folder in root directory. This folder contains instructions to run the GUI`
+> Note: This script was used for early testing stage, and now we have developed a web application as a GUI where the user selects the image to test
+> The web application can be found in the 'Interfaz/SemVisorIA' folder in root directory. This folder contains instructions to run the GUI
