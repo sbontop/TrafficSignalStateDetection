@@ -11,7 +11,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = BASE_DIR.replace('\\','/')
 # load model
-dir_model = os.path.join(BASE_DIR,'reconocimiento', 'model.h5').replace('\\','/')
+dir_model = os.path.join(BASE_DIR,'../../','model.h5').replace('\\','/')
 model = load_model(dir_model)
 
 
