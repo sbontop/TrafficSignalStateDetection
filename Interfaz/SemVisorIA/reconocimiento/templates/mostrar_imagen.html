@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row showResultPage">
+    {% if imagen.imagen %}
+    <div class="col-md-2"></div>
+    <div class="col-md-5 testedImg">
+        <img src="{{ MEDIA_URL }}{{ imagen.imagen.url }}" />
+    </div>
+        {% if tpassed %}
+        <div class="col-md-5 scenario">
+            <div class="row resultados">
+                <div>
+                    <div class="col-md-12">
+                        <div>
+                            <button type="button" class="btn btn-{{className}}">Clase <span class="badge badge-light">{{className}}</span></button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-secondary">Probabilidad <span class="badge badge-light">{{probabilityValue}}</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row simbolo">
+                <div class="col-md-12">
+                    <img src="{% static 'images/signals/'|add:className|add:'.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% else %}
+    <p>La imagen no se cargó correctamente.</p> 
+    {% endif %}
+</div>
+
+<script>
+document.querySelector('.testedImg').onmousemove = (e) => {
+    const x = e.pageX - e.target.offsetLeft
+    const y = e.pageY - e.target.offsetTop
+
+    e.target.style.setProperty('--x', `${ x }px`)
+    e.target.style.setProperty('--y', `${ y }px`)
+}
+
+</script>
+{% endblock %}

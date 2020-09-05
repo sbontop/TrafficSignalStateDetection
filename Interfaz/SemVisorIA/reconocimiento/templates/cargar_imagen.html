@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<script> 
+function cargarImagen(){
+    document.getElementById("form_carga").style.display = "";
+    document.getElementById("div_inicial").style.display = "none";
+}
+</script>
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 col-btn">
+        <form id="form_carga" enctype="multipart/form-data" action="" method="post" style="display: none;"> <!-- Do not forget to add: enctype="multipart/form-data" -->
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Clasificar">
+        </form>
+        <div id="div_inicial">
+            <input type="button" value="Cargar Imagen" onclick="cargarImagen();">
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% load static %}
+<html>
+    <head>
+        <title>Proyecto IA</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/reconocimiento.css' %}">
+    </head>
+    <body>
+        <div class="container-fluid page-header">
+            <h1><a href="/">SemVisor</a></h1>
+            <p>El objetivo es reconocer los colores de semáforos en la vía pública mediante 
+               conceptos de inteligencia artificial para aportar positivamente a la circulación de vehículos</p> 
+
+            <p>Nuestra propuesta consiste en la implementación de una red neuronal convolucional que nos permita 
+               reconocer los semáforos de la vía pública a una distancia considerable. </p>
+        </div>
+
+        <div class="container-fluid">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+    <!-- Footer -->
+    <footer>
+        <!-- Copyright -->
+        <div class="foot-content">   
+            <p>Samuel Braganza Zorilla | Jorge Pinargote Figueroa | Axel Godoy Saavedra</p>     
+            <a href="https://github.com/sbraganz2017/TrafficSignalStateDetection">GitHub</a></p>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+</html>
