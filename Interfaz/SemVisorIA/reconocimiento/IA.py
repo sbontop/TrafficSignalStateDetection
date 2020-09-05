@@ -41,9 +41,9 @@ def getResults(imagen):
     if imagen:
         ruta = BASE_DIR + imagen.imagen.url
         img = cv2.imread(ruta, 1)
-        img = cv2.resize(img, (32, 32))
+        img = cv2.resize(img, (50, 50))
         img = preprocessing(img)
-        img = img.reshape(1, 32, 32, 1)
+        img = img.reshape(1, 50, 50, 1)
 
         # PREDICT IMAGE
         predictions = model.predict(img)
